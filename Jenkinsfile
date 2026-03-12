@@ -10,10 +10,14 @@ pipeline {
     stages {
 
         stage('Build') {
-            steps {
-                sh 'npm install'
-            }
-        }
+    steps {
+        sh '''
+        apt-get update
+        apt-get install -y python3 make g++
+        npm install
+        '''
+    }
+}
 
         stage('Test') {
             steps {
