@@ -44,7 +44,7 @@ pipeline {
 
                     sh '''
                     echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
-                    docker push $DOCKER_USER/todo-app:latest
+                    docker push $DOCKER_HUB_USER/$IMAGE_NAME:latest
                     '''
                 }
             }
