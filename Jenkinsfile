@@ -14,14 +14,15 @@ pipeline {
     stages {
 
         stage('Build') {
-            steps {
-                sh '''
-                apt-get update
-                apt-get install -y python3 make g++
-                npm install
-                '''
-            }
-        }
+    steps {
+        sh '''
+        apt-get update
+        apt-get install -y python3 make g++
+        ln -sf /usr/bin/python3 /usr/bin/python
+        npm install
+        '''
+    }
+}
 
         stage('Test') {
             steps {
