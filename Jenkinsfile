@@ -1,9 +1,5 @@
 pipeline {
-    agent {
-        docker {
-            image 'node:18'
-        }
-    }
+    agent any
 
     environment {
         DOCKER_HUB_USER = 'myatbhonethet'
@@ -43,15 +39,8 @@ pipeline {
                     echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
                     docker push $DOCKER_USER/todo-app:latest
                     '''
-
                 }
             }
-        }
-    }
-
-    post {
-        always {
-            sh "docker rmi ${DOCKER_HUB_USER}/${IMAGE_NAME}:latest || true"
         }
     }
 }
