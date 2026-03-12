@@ -1,5 +1,9 @@
 pipeline {
-    agent any
+    agent {
+        docker {
+            image 'node:18'
+        }
+    }
 
     environment {
         DOCKER_HUB_USER = 'myatbhonethet'
@@ -10,14 +14,14 @@ pipeline {
     stages {
 
         stage('Build') {
-    steps {
-        sh '''
-        apt-get update
-        apt-get install -y python3 make g++
-        npm install
-        '''
-    }
-}
+            steps {
+                sh '''
+                apt-get update
+                apt-get install -y python3 make g++
+                npm install
+                '''
+            }
+        }
 
         stage('Test') {
             steps {
